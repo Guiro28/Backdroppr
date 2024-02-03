@@ -30,8 +30,10 @@ def check_duration(info, *, incomplete):
 def trailer_pull(tmdb_id, item_type):
     logging.info("Getting information about the item...")
     try:
+        tmdb_language = config.get('tmdb_language', 'en-US')
         item_trailers = requests.get(
-            f"http://api.themoviedb.org/3/{item_type}/{tmdb_id}/videos?api_key={config['tmdb_api']}").json()['results']
+            f"http://api.themoviedb.org/3/{item_type}/{tmdb_id}/videos?api_key={config['tmdb_api']}&language={tmdb_language}"
+        ).json()['results']
         item_trailers = list(filter(lambda x: x['type'] == 'Trailer' and x['site'] == 'YouTube', item_trailers))
         return sorted(item_trailers, key=lambda x: x['size'])[-1]['key']
     except IndexError:
