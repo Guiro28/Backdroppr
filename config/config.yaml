@@ -6,7 +6,7 @@ sonarr_host: "http://172.0.0.1:8989"
 tmdb_api: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 output_dirs: "trailers"
 ### Optional ###
-tmdb_language: "en-US"
+tmdb_language: "fr-FR"
 filetype: "webm"
 sleep_time: 3
 length_range: "30,300"
