@@ -4,7 +4,7 @@ radarr_host: "http://172.0.0.1:7878"
 sonarr_api: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 sonarr_host: "http://172.0.0.1:8989"
 tmdb_api: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-output_dirs: "trailers"
+output_dirs: "backdrops"
 ### Optional ###
 tmdb_language: "fr-FR"
 filetype: "webm"
