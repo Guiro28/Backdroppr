@@ -10,6 +10,9 @@ import yt_dlp
 from pyarr import SonarrAPI, RadarrAPI
 
 
+def is_french_trailer(trailer_name):
+    return "VF" in trailer_name
+
 def load_config():
     with open('config/config.yaml', 'r') as f:
         global config
@@ -34,7 +37,8 @@ def trailer_pull(tmdb_id, item_type):
         item_trailers = requests.get(
             f"http://api.themoviedb.org/3/{item_type}/{tmdb_id}/videos?api_key={config['tmdb_api']}&language={tmdb_language}"
         ).json()['results']
-        item_trailers = list(filter(lambda x: x['type'] == 'Trailer' and x['site'] == 'YouTube', item_trailers))
+        # Modifie ici pour filtrer uniquement les bandes-annonces françaises
+        item_trailers = list(filter(lambda x: x['type'] == 'Trailer' and x['site'] == 'YouTube' and is_french_trailer(x['name']), item_trailers))
         return sorted(item_trailers, key=lambda x: x['size'])[-1]['key']
     except IndexError:
         return 1
